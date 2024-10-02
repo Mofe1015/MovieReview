@@ -8,4 +8,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  resources :movies do
+    resources :movie_ratings
+  end
+
+  # Root path (optional, depending on your project setup)
+  root "movies#index"
 end

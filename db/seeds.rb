@@ -56,3 +56,5 @@ Movie.create!(
   name: "12th Fail",
   description: "The real-life story of IPS Officer Manoj Kumar Sharma and IRS Officer Shraddha Joshi.",
 )
+
+Category.create([{ name: 'Performance' }, { name: 'Special Effects' }, { name: 'Storytelling' }])

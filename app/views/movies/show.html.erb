@@ -4,7 +4,23 @@
 
 <div>
   <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
-
+  <%= link_to "Back to movies", movies_path %> |
+  <%= link_to "Rate this movie", new_movie_movie_rating_path(@movie) %>  
   <%= button_to "Destroy this movie", @movie, method: :delete %>
 </div>
+
+<h2>Ratings</h2>
+<% if @movie.movie_ratings.any? %>
+  <h3>Average Category Scores:</h3>
+  <ul>
+    <% @movie.average_scores.each do |score| %>
+      <li>
+        <strong><%= score[:category_name] %>:</strong> <%= score[:average_score] %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h3>Total Score: <%= @movie.total_average_score %></h3>
+<% else %>
+  <p>No ratings available yet.</p>
+<% end %>

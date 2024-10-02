@@ -1,0 +1,19 @@
+<h1>Rate <%= @movie.name %></h1>
+
+<%= form_with(model: [@movie, @movie_rating], local: true, data: { turbo: false }) do |form| %>
+  <h3>Your Review</h3>
+
+  <%= form.fields_for :movie_rating_categories do |category_fields| %>
+    <div>
+      <%= category_fields.label :category_id, category_fields.object.category.name %>
+      <%= category_fields.hidden_field :category_id, value: category_fields.object.category.id %>
+      <%= category_fields.number_field :score, min: 1, max: 10 %>
+    </div>
+  <% end %>
+
+  <%= render "shared/error_messages", object: @movie_rating %>  <!-- Ensure this is rendered here -->
+  
+  <%= form.submit "Submit Review" %>
+<% end %>
+
+<%= link_to 'Back to Movie', movie_path(@movie) %>
